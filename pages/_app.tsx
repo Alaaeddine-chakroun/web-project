@@ -1,10 +1,13 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Alexandria } from "next/font/google";
+import { useRef } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const alexandria = Alexandria({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const queryClient = useRef(new QueryClient()).current;
   return (
     <>
       <style jsx global>{`
@@ -12,7 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${alexandria.style.fontFamily};
         }
       `}</style>
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </>
   );
 }

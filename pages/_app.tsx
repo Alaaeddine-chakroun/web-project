@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Alexandria } from "next/font/google";
 import { useRef } from "react";
+import { Toaster } from "react-hot-toast";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 
 const alexandria = Alexandria({ subsets: ["latin"] });
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Component {...pageProps} />
+          <Toaster />
         </Hydrate>
       </QueryClientProvider>
     </>

@@ -1,5 +1,6 @@
 import { QueryKeys } from "@/constants/queryKeys";
 import { addStudent, deleteStudent } from "@/services/student";
+import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
 
 export function useStudentMutations() {
@@ -8,6 +9,7 @@ export function useStudentMutations() {
   const addStudentMutation = useMutation({
     mutationFn: addStudent,
     onSuccess: () => {
+      toast.success("Etudiant ajouté avec succès");
       queryClient.invalidateQueries(QueryKeys.STUDENTS);
     },
   });
@@ -15,6 +17,7 @@ export function useStudentMutations() {
   const deleteStudentMutation = useMutation({
     mutationFn: deleteStudent,
     onSuccess: () => {
+      toast.success("Etudiant supprimé avec succès");
       queryClient.invalidateQueries(QueryKeys.STUDENTS);
     },
   });

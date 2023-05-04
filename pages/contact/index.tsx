@@ -3,11 +3,14 @@ import FormInput from "@/components/FormInput/input";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 function ContactPage() {
   const formMethods = useForm();
   const router = useRouter();
+
   function handleSubmit() {
+    toast.success("Votre message a bien été envoyé !");
     router.push("/");
   }
   return (

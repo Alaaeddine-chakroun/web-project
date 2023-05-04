@@ -1,23 +1,27 @@
+import ButtonLink from "@/components/ButtonLink";
 import StudentGridItem from "@/components/StudentGridItem";
 import { useStudentsQuery } from "@/hooks/queries/useStudentsQuery";
-import Link from "next/link";
 
 function DashboardPage() {
-  const { data, isLoading } = useStudentsQuery();
+  const { data } = useStudentsQuery();
   return (
-    <div>
-      <section className="min-h-[600px] grid place-items-center">
-        <h1 className="text-7xl font-bold">Dashboard</h1>
-      </section>
-      <div className="container mx-auto">
-        <h2 className="text-4xl font-bold">Liste des etudiants</h2>
+    <div className="space-y-4 container flex flex-col mx-auto">
+      <h1 className="text-7xl my-7 font-bold">Dashboard</h1>
+      <ButtonLink
+        className="block self-start"
+        title="Ajouter un etudiant"
+        href="/dashboard/add"
+      />
+      <h2 className="text-4xl font-bold">Liste des etudiants</h2>
+      {data?.length ? (
         <div className="grid grid-cols-3 gap-4">
-          {data?.map((student) => (
+          {data.map((student) => (
             <StudentGridItem key={student._id} student={student} />
           ))}
         </div>
-        <Link href="/dashboard/add">Ajouter un etudiant</Link>
-      </div>
+      ) : (
+        <p className="text-2xl text-center">Aucun étudiant</p>
+      )}
     </div>
   );
 }

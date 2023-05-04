@@ -1,11 +1,13 @@
 import { useStudentMutations } from "@/hooks/mutations/useStudentMutations";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { StudentToSubmit } from "@/types/student";
 import { useRouter } from "next/router";
+import FormInput from "@/components/FormInput/input";
+import Button from "@/components/Button";
 
 function AddStudentPage() {
   const {
-    addStudentMutation: { mutate },
+    addStudentMutation: { mutate, isLoading },
   } = useStudentMutations();
   const formMethods = useForm<StudentToSubmit>();
   const router = useRouter();
@@ -19,34 +21,23 @@ function AddStudentPage() {
   }
 
   return (
-    <form
-      className="bg-black"
-      onSubmit={formMethods.handleSubmit(handleSubmit)}
-    >
-      <input
-        className="block"
-        type="text"
-        {...formMethods.register("firstname", { required: true })}
-      />
-      <input
-        className="block"
-        type="text"
-        {...formMethods.register("lastname", { required: true })}
-      />
-      <input
-        className="block"
-        type="number"
-        {...formMethods.register("age", { required: true })}
-      />
-      <input
-        className="block"
-        type="text"
-        {...formMethods.register("class", { required: true })}
-      />
-      <button className="text-white" type="submit">
-        Ajouter
-      </button>
-    </form>
+    <div className="container mx-auto">
+      <FormProvider {...formMethods}>
+        <h1 className="my-7 text-6xl text-center font-bold">
+          Ajouter un étudiant
+        </h1>
+        <form
+          className="rounded p-4 mx-auto shadow-lg grid max-w-3xl space-y-4"
+          onSubmit={formMethods.handleSubmit(handleSubmit)}
+        >
+          <FormInput name="firstname" label="Prénom" />
+          <FormInput name="lastname" label="Nom" />
+          <FormInput name="age" label="Age" />
+          <FormInput name="class" label="Classe" />
+          <Button isLoading={isLoading} title="Ajouter" type="submit" />
+        </form>
+      </FormProvider>
+    </div>
   );
 }
 

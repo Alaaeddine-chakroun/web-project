@@ -68,16 +68,18 @@ function HomePage() {
             </figure>
           </section>
         </div>
-        <section className="text-center bg-black text-white flex flex-col py-20 mt-8">
-          <h2 className="font-semibold mb-4 text-xl">
-            Notre équipe se fera un plaisir de répondre à toutes vos questions,
-            alors contactez-nous dès maintenant !
-          </h2>
-          <ButtonLink
-            title="Contactez-nous"
-            href="/contact"
-            className="bg-white hover:bg-gray-300 text-black text-xl mx-auto"
-          />
+        <section className="bg-black text-white py-20 mt-8">
+          <div className="container mx-auto flex flex-col text-center px-4 md:px-0">
+            <h2 className="font-semibold mb-4 text-xl">
+              Notre équipe se fera un plaisir de répondre à toutes vos
+              questions, alors contactez-nous dès maintenant !
+            </h2>
+            <ButtonLink
+              title="Contactez-nous"
+              href="/contact"
+              className="bg-white hover:bg-gray-300 !text-black text-xl mx-auto"
+            />
+          </div>
         </section>
       </div>
     </>

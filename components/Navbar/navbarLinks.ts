@@ -4,8 +4,8 @@ export const navbarLinks: { label: string; href: string }[] = [
     href: "/",
   },
   {
-    label: "A propos",
-    href: "/about",
+    label: "Notre équipe",
+    href: "/our-team",
   },
   {
     label: "Contact",

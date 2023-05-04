@@ -24,7 +24,12 @@ function TeacherGridItem({ className = "", teacher }: TeacherGridItemProps) {
           <h3 className="text-2xl font-bold">
             {teacher.firstname} {teacher.lastname}
           </h3>
-          <p className="text-sm font-light text-gray-700">{teacher.email}</p>
+          <a
+            href={`mailto:${teacher.email}`}
+            className="text-sm font-light text-gray-700"
+          >
+            {teacher.email}
+          </a>
         </div>
       </div>
       <p className="text-lg font-semibold">{teacher.occupation}</p>

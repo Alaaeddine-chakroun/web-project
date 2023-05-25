@@ -4,7 +4,7 @@ export const navbarLinks: { label: string; href: string }[] = [
     href: "/",
   },
   {
-    label: "Notre équipe",
+    label: "Équipe",
     href: "/our-team",
   },
   {
